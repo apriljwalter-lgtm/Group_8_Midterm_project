@@ -96,7 +96,6 @@ def _(df):
 @app.cell
 def _():
     # Step 6- Keep only the rows where admission_type is "Emergency" and save them as a new Dataframe, emergency. This filter is only for this step since its the largest group so its numbers are the most reliable. We use it to check if readmission still rises with more diagnoses within a single admission type. How the filter works: data["admission_type"] == "Emergency" checks every row and gives True or False. Putting that inside data[ ] keeps only the True rows.
-
     return
 
 
@@ -161,7 +160,6 @@ def _(by_type_and_dx):
 @app.cell
 def _():
     #Step 10- Create a chart settings cell so the charts list the categories in the same order each time. Without this the charts would sort the categories on their own, so Elective, Urgent and Emergency could show up in a different order on each chart and make them harder to compare.
-
     return
 
 
@@ -296,9 +294,8 @@ def _(mo):
 
     • Elective admissions had a lower readmission rate (34.1%) than Urgent (41.4%) and Emergency (41.8%), and Elective is the lowest line in every diagnosis group.
 
-    • The Emergency-only filter (Step 3) shows the same rising pattern within a single admission type.
+    • The Emergency-only filter (Step 6) shows the same rising pattern within a single admission type.
 
-    • The correlation between diagnoses and readmission is 0.162: positive but weak. The number of diagnoses is one factor, not a strong predictor on its own.
 
     #Limitations
     • This shows a relationship, not a cause. More diagnoses may mean sicker patients, and that could be what drives readmission.
