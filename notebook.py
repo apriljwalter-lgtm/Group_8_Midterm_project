@@ -31,8 +31,8 @@ def _():
 
 @app.cell
 def _(pd):
-    # step 1
-    df = pd.read_csv("diabetes_130.csv")
+    # step 1 - Load the data from GitHub so the notebook also runs online at marimo.app
+    df = pd.read_csv("https://raw.githubusercontent.com/apriljwalter-lgtm/Group_8_Midterm_project/main/diabetes_130.csv")
     df.head()
     return (df,)
 
