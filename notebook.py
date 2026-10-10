@@ -4,19 +4,13 @@ __generated_with = "0.25.1"
 app = marimo.App(width="medium")
 
 
-@app.cell
-def _():
-    import marimo as mo
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    import seaborn as sns
-
-    return mo, pd, plt, sns
-
-
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
+    # Midterm Project Group 8
+
+    **Group members:** Ryan Merlino, Nikolas Platon, April Walter
+
     **“How is the number of diagnoses related to hospital readmission, and does that relationship differ by admission type (Emergency, Urgent, Elective)?”**
     """)
     return
@@ -30,8 +24,19 @@ def _():
 
 
 @app.cell
+def _():
+    # Import the libraries we need. marimo builds the notebook and shows the text, pandas loads and works with the data table, and matplotlib and seaborn draw the charts.
+    import marimo as mo
+    import pandas as pd
+    import matplotlib.pyplot as plt
+    import seaborn as sns
+
+    return mo, pd, plt, sns
+
+
+@app.cell
 def _(pd):
-    # step 1 - Load the data from GitHub so the notebook also runs online at marimo.app
+    # step 1 - Load the data from GitHub so the notebook also runs online at marimo.app. We look at the first rows to make sure the data loaded correctly and to see what the columns look like before we start.
     df = pd.read_csv("https://raw.githubusercontent.com/apriljwalter-lgtm/Group_8_Midterm_project/main/diabetes_130.csv")
     df.head()
     return (df,)
@@ -39,27 +44,29 @@ def _(pd):
 
 @app.cell
 def _(df):
-    # Step 2- Check size, column types, and missing values.
+    # Step 2- Check size, column types, and missing values. We do this before the analysis so we know how many patients we have and if any data needs to be cleaned first.
     print(df.shape)
+    print(df.dtypes)
+    print("Missing values:", df.isna().sum().sum())
     return
 
 
 @app.cell
 def _():
-    # Step 3 Make a new data frame = data with only the columns our question uses. Only columns are removed, there are no patients removed. 
+    # Step 3 Make a new data frame = data with only the columns our question uses. Only columns are removed, there are no patients removed.
 
-    # Step 4 We add a new column that turns the readmission text into a number: 0 = not readmitted, 1 = readmitted so the numbers are easier to work with. 
+    # Step 4 We add a new column that turns the readmission text into a number: 0 = not readmitted, 1 = readmitted so the numbers are easier to work with.
 
-    #Step 5 We sort each patient into one of four diagnosis ranges so we can compare groups instead of 16 separate values. The function checks the number with if/elif/else and returns a label. .apply() runs that function on every row.
+    #Step 5 We sort each patient into one of four diagnosis ranges so we can compare groups instead of 12 separate values. The function checks the number with if/elif/else and returns a label. .apply() runs that function on every row.
 
-    #These steps need to group together so we can call the values later in the charting. 
+    #These steps need to group together so we can call the values later in the charting.
     return
 
 
 @app.cell
 def _(df):
     #step 3 make a new data frame = data
-    data =df[["age", "admission_type", "number_diagnoses","readmitted"]].copy()
+    data =df[["admission_type", "number_diagnoses","readmitted"]].copy()
     data
 
     # Step 4 Computed column: 1 = readmitted (any time), 0 = not readmitted.
@@ -110,7 +117,7 @@ def _(data):
 
 @app.cell
 def _():
-    # Step 7 -Calculate the readmission rate percentage.  
+    # Step 7- Calculate the readmission rate percentage for each admission type. We look at admission type by itself first so we can see if Emergency, Urgent and Elective patients get readmitted at different rates before we add in the number of diagnoses.
     return
 
 
@@ -124,7 +131,7 @@ def _(data):
 
 @app.cell
 def _():
-    # Step 8- Calculate the readmission rate by admission type and diagnosis group. 
+    # Step 8- Calculate the readmission rate by admission type and diagnosis group. We need both together to answer the second part of our question, if the relationship between diagnoses and readmission is different for each admission type. This table is also used for the line chart later.
     return
 
 
@@ -139,7 +146,7 @@ def _(data):
 
 @app.cell
 def _():
-    #Step 9 - Sort the data so highest readmission rates are first. 
+    #Step 9 - Sort the data so highest readmission rates are first.
     return
 
 
@@ -153,7 +160,7 @@ def _(by_type_and_dx):
 
 @app.cell
 def _():
-    #Step 11-Create a chart settings cell so the charts list the categories the same each time. 
+    #Step 10- Create a chart settings cell so the charts list the categories in the same order each time. Without this the charts would sort the categories on their own, so Elective, Urgent and Emergency could show up in a different order on each chart and make them harder to compare.
 
     return
 
@@ -162,14 +169,14 @@ def _():
 def _():
     readmit_order = ["Not readmitted", "After 30 days", "Within 30 days"]
     admission_order = ["Elective", "Urgent", "Emergency"]
-    age_order = ["0-49", "50-59", "60-69", "70-79", "80+"]
     return admission_order, readmit_order
 
 
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    #Histogram- Distribution of Number of Diagnoses per Encounter
+    # Histogram- Distribution of Number of Diagnoses per Encounter
+    We use a histogram because it shows how many patients have each number of diagnoses. This helps us see which numbers are common and which are rare before we compare readmission. It is also why we put the diagnoses into groups and leave out the rare values in the scatter plot.
     """)
     return
 
@@ -188,7 +195,8 @@ def _(data, plt, sns):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    #Boxplot- Number of Diagnoses by Readmission Outcome
+    # Boxplot- Number of Diagnoses by Readmission Outcome
+    We use a boxplot because it lets us compare the number of diagnoses across the three readmission outcomes. We are looking to see if patients who were readmitted tend to have more diagnoses than patients who were not readmitted.
     """)
     return
 
@@ -207,7 +215,8 @@ def _(data, plt, readmit_order, sns):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    #Scatterplot- Readmission Rate by Number of Diagnoses
+    # Scatterplot- Readmission Rate by Number of Diagnoses
+    We use a scatter plot because it shows how two numbers move together, here the number of diagnoses and the readmission rate. We are looking to see if the readmission rate goes up as the number of diagnoses goes up. We only show 2 to 9 diagnoses because the other values have too few patients (1 diagnosis has 6 patients and 14 to 16 have only 1 or 2 each), so their rates would not be reliable.
     """)
     return
 
@@ -217,6 +226,7 @@ def _(data, plt, sns):
     # Readmission rate (%) for each number of diagnoses.
     rate_by_dx = data.groupby("number_diagnoses")["readmitted_flag"].mean() * 100
     rate_by_dx = rate_by_dx.reset_index(name="readmission_rate")
+    # Keep only 2 to 9 diagnoses, the other values have too few patients to give a reliable rate.
     rate_by_dx = rate_by_dx[rate_by_dx["number_diagnoses"].between(2, 9)]
 
     plt.figure(figsize=(8, 4))
@@ -232,7 +242,8 @@ def _(data, plt, sns):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    # Group comparision- Number of Diagnoses by Admission Type and Readmission Outcome
+    # Group Comparison- Number of Diagnoses by Admission Type and Readmission Outcome
+    We use a grouped boxplot so we can compare readmission outcomes within each admission type side by side. We are looking to see if the gap in diagnoses between readmitted and not readmitted patients is the same for Emergency, Urgent and Elective.
     """)
     return
 
@@ -253,7 +264,8 @@ def _(admission_order, data, plt, readmit_order, sns):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    #Line Chart- Readmission Rate by Number of Diagnoses and Admission Type
+    # Line Chart- Readmission Rate by Number of Diagnoses and Admission Type
+    We use a line chart because the diagnosis groups are in order from low to high, so a line shows the trend. Each admission type gets its own line, which lets us see if readmission rises the same way for all three types or if one is different. This chart answers the second part of our research question.
     """)
     return
 
