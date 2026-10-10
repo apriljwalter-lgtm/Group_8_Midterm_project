@@ -1,0 +1,10 @@
+[project]
+name = "mid-term-project"
+version = "0.1.0"
+requires-python = ">=3.14"
+dependencies = [
+    "altair>=6.3.0",
+    "marimo>=0.25.1",
+    "pandas>=3.0.6",
+    "scipy>=1.18.1",
+]
