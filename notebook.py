@@ -212,7 +212,7 @@ def _(data, plt, readmit_order, sns):
 def _(mo):
     mo.md(r"""
     # Scatterplot- Readmission Rate by Number of Diagnoses
-    We use a scatter plot because it shows how two numbers move together, here the number of diagnoses and the readmission rate. We are looking to see if the readmission rate goes up as the number of diagnoses goes up. We only show 2 to 9 diagnoses because the other values have too few patients (1 diagnosis has 6 patients and 14 to 16 have only 1 or 2 each), so their rates would not be reliable.
+    We use a scatter plot because it shows how two numbers move together, here the number of diagnoses and the readmission rate. We are looking to see if the readmission rate goes up as the number of diagnoses goes up. We only show 2 to 9 diagnoses because the other values have too few patients (1 diagnosis has 6 patients and 14 to 16 have only 1 or 2 each), so their rates would not be reliable. Even within 2 to 9, the points at 2 and 3 diagnoses rest on small groups (39 and 102 patients), so the low end is noisy; the overall upward trend is clearer from 4 diagnoses onward.
     """)
     return
 
@@ -298,7 +298,7 @@ def _(mo):
 
     • This shows a relationship, not a cause. More diagnoses may mean sicker patients, and that could be what drives readmission.
 
-    • Most encounters have exactly 9 diagnoses, because the original hospital systems stored at most 9 for most of these years. Patients with more conditions may be undercounted.
+    • Most encounters have exactly 9 diagnoses (1,376 of 3,000 stays). This may reflect a recording limit in the source data, but we have not verified why. If so, patients with more conditions would be undercounted.
 
     • The data is a 3,000-row sample from 1999–2008 covering only patients with diabetes, so results may not apply to other patients or to hospitals today.
 
