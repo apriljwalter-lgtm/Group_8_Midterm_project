@@ -66,8 +66,7 @@ def _():
 @app.cell
 def _(df):
     #step 3 make a new data frame = data
-    data =df[["admission_type", "number_diagnoses","readmitted"]].copy()
-    data
+    data = df[["admission_type", "number_diagnoses", "readmitted"]].copy()
 
     # Step 4 Computed column: 1 = readmitted (any time), 0 = not readmitted.
     data["readmitted_flag"] = data["readmitted"].map({
@@ -75,7 +74,6 @@ def _(df):
         "After 30 days": 1,
         "Within 30 days": 1,
     })
-    data.head()
 
     # Step 5 - Computed column: put the number of diagnoses into four ranges.
     def diagnosis_group(n):
@@ -285,9 +283,8 @@ def _(admission_order, by_type_and_dx, plt, sns):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    #This is what AI says we need to summarize this in our own terms...
+    ## Findings
 
-    #Findings
     • 40.0% of all encounters were followed by a readmission at any time.
 
     • The readmission rate rises from 24.6% for patients with 1–4 diagnoses to 31.9% (5–6), 44.6% (7–8) and 46.0% (9+). It levels off after about 7 diagnoses.
@@ -297,7 +294,8 @@ def _(mo):
     • The Emergency-only filter (Step 6) shows the same rising pattern within a single admission type.
 
 
-    #Limitations
+    ## Limitations
+
     • This shows a relationship, not a cause. More diagnoses may mean sicker patients, and that could be what drives readmission.
 
     • Most encounters have exactly 9 diagnoses, because the original hospital systems stored at most 9 for most of these years. Patients with more conditions may be undercounted.

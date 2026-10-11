@@ -19,7 +19,6 @@ Columns used in this project:
 | `number_diagnoses` | Number of diagnoses recorded for the encounter |
 | `readmitted` | Not readmitted, After 30 days, or Within 30 days |
 | `admission_type` | Emergency, Urgent, or Elective |
-| `age` | Patient age group |
 
 ## What the notebook does
 
@@ -54,6 +53,10 @@ uv run marimo edit notebook.py
 
 The notebook opens in your browser. It loads the data from this GitHub repository, so it needs an internet connection.
 
+## Presentation
+
+`slides/Slides.pdf` is the 5-minute class presentation. `slides/make_slides.py` rebuilds the figures and slides from the CSV.
+
 ## Files
 
 | File | Purpose |
@@ -61,3 +64,6 @@ The notebook opens in your browser. It loads the data from this GitHub repositor
 | `notebook.py` | The marimo analysis notebook |
 | `diabetes_130.csv` | The dataset |
 | `pyproject.toml`, `uv.lock` | The Python packages the notebook needs |
+| `slides/` | Presentation (PDF) and the script that builds it |
+| `Notebook.pdf` | PDF export of the notebook for submission |
+| `alternative_stay_vs_medications/` | A second, separate analysis (stay length vs. medications) kept for reference |
