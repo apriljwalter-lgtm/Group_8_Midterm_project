@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.25.1"
+__generated_with = "0.24.2"
 app = marimo.App(width="medium")
 
 
@@ -285,26 +285,9 @@ def _(admission_order, by_type_and_dx, plt, sns):
 @app.cell(hide_code=True)
 def _(mo):
     mo.md(r"""
-    #This is what AI says we need to summarize this in our own terms...
+    Throughout our findings, we noticed that 40% of all encounters were followed by a readmission at any time. Readmission rate also rises from 24.6% for paatients that have 1-4 diagnoses to 31.9% for those that have 5-6 diagnoses, 44.6% to those with 7-8 diagnoses, and 46% with 9+ diagnoses to which it levels off after approxiumately 7 diagnoses. Elective admissions also had a lower readmission rate (34.1%) than Urent (41.4%) and Emergency (41.8%) even though Elective is the lowest line in every diagnosis group. Finally, the Emergency-only filter shows the ssame rising pattern within a single admission tupe.
 
-    #Findings
-    • 40.0% of all encounters were followed by a readmission at any time.
-
-    • The readmission rate rises from 24.6% for patients with 1–4 diagnoses to 31.9% (5–6), 44.6% (7–8) and 46.0% (9+). It levels off after about 7 diagnoses.
-
-    • Elective admissions had a lower readmission rate (34.1%) than Urgent (41.4%) and Emergency (41.8%), and Elective is the lowest line in every diagnosis group.
-
-    • The Emergency-only filter (Step 6) shows the same rising pattern within a single admission type.
-
-
-    #Limitations
-    • This shows a relationship, not a cause. More diagnoses may mean sicker patients, and that could be what drives readmission.
-
-    • Most encounters have exactly 9 diagnoses, because the original hospital systems stored at most 9 for most of these years. Patients with more conditions may be undercounted.
-
-    • The data is a 3,000-row sample from 1999–2008 covering only patients with diabetes, so results may not apply to other patients or to hospitals today.
-
-    • Some combinations are small. Urgent with 1–4 diagnoses has only 74 patients, so its rate is less certain.
+    Despie our findings, what we've shown is a relationship and not a cause. More diagnoses can mean sicker patients which could drive more readmissions. Most of the encounters have exactly 9 diagnoses being the original hospital systems stored at most 9 diagnosics for most of the years. Thus patiants with more conditions may have not been counted. Also, the data is from a 3000 row sample from 1999-2008 and covers only patients with diabetes meaing that the results may  not apply to other hospitals or patients. In addition, some combinations are small. For example, Urgent has 74 patients with 1-4 diagnoses, so its rate is less certain.
     """)
     return
 
