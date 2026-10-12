@@ -97,7 +97,7 @@ bullets(s, ["1. Kept the three relevant columns",
             "4. Grouped by admission type and diagnosis group; sorted by readmission rate",
             "5. Made a histogram, boxplot, scatter plot, and group comparison charts"], size=26)
 
-fig("Most stays have 9 diagnoses", "fig1.png", ["1,376 of 3,000 stays have exactly 9 diagnoses", "This may be a recording limit in the data, so heavy cases could be undercounted"])
+fig("Most stays have 9 diagnoses", "fig1.png", ["1,376 of 3,000 stays have exactly 9 diagnoses", "Likely because the source hospital systems capped recorded diagnoses, so patients with more conditions may be undercounted"])
 fig("Readmitted patients have more diagnoses", "fig2.png", ["Average diagnoses: 7.0 for not readmitted vs 7.7 for readmitted (either timing)"])
 fig("Readmission rises with diagnoses", "fig3.png", ["Rate climbs from 30% at 5 diagnoses to 46% at 9", "Points at 2-3 diagnoses are noisy (39 and 102 patients)", "Overall: 40.0% readmitted"])
 fig("Same upward trend in each admission type", "fig4.png", ["1-4 diagnoses: 24.6% readmitted; 9+: 46.0%", "Elective is lowest in every group (34.1% vs 41.4% Urgent, 41.8% Emergency)", "Emergency-only check shows the same rise"])
