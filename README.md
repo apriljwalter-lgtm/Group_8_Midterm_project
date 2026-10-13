@@ -66,4 +66,3 @@ The notebook opens in your browser. It loads the data from this GitHub repositor
 | `pyproject.toml`, `uv.lock` | The Python packages the notebook needs |
 | `slides/` | Presentation (PDF) and the script that builds it |
 | `Notebook.pdf` | PDF export of the notebook for submission |
-| `alternative_stay_vs_medications/` | A second, separate analysis (stay length vs. medications) kept for reference |
