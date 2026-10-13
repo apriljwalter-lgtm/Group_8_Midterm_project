@@ -66,8 +66,7 @@ def _():
 @app.cell
 def _(df):
     #step 3 make a new data frame = data
-    data =df[["admission_type", "number_diagnoses","readmitted"]].copy()
-    data
+    data = df[["admission_type", "number_diagnoses", "readmitted"]].copy()
 
     # Step 4 Computed column: 1 = readmitted (any time), 0 = not readmitted.
     data["readmitted_flag"] = data["readmitted"].map({
@@ -75,7 +74,6 @@ def _(df):
         "After 30 days": 1,
         "Within 30 days": 1,
     })
-    data.head()
 
     # Step 5 - Computed column: put the number of diagnoses into four ranges.
     def diagnosis_group(n):
@@ -214,7 +212,7 @@ def _(data, plt, readmit_order, sns):
 def _(mo):
     mo.md(r"""
     # Scatterplot- Readmission Rate by Number of Diagnoses
-    We use a scatter plot because it shows how two numbers move together, here the number of diagnoses and the readmission rate. We are looking to see if the readmission rate goes up as the number of diagnoses goes up. We only show 2 to 9 diagnoses because the other values have too few patients (1 diagnosis has 6 patients and 14 to 16 have only 1 or 2 each), so their rates would not be reliable.
+    We use a scatter plot because it shows how two numbers move together, here the number of diagnoses and the readmission rate. We are looking to see if the readmission rate goes up as the number of diagnoses goes up. We only show 2 to 9 diagnoses because the other values have too few patients (1 diagnosis has 6 patients and 14 to 16 have only 1 or 2 each), so their rates would not be reliable. Even within 2 to 9, the points at 2 and 3 diagnoses rest on small groups (39 and 102 patients), so the low end is noisy; the overall upward trend is clearer from 4 diagnoses onward.
     """)
     return
 

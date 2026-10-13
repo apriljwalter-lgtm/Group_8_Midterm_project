@@ -7,6 +7,7 @@ dependencies = [
     "marimo>=0.25.1",
     "matplotlib>=3.11.2",
     "pandas>=3.0.6",
+    "python-pptx>=1.0.2",
     "scipy>=1.18.1",
     "seaborn>=0.13.2",
 ]
