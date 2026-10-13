@@ -27,6 +27,12 @@ sns.boxplot(data=df, x="readmitted", y="number_diagnoses", order=out, palette=["
 plt.title("Number of Diagnoses by Readmission Outcome")
 plt.xlabel("Readmission outcome"); plt.ylabel("Number of diagnoses"); save("fig2.png")
 
+plt.figure(figsize=(9, 5))
+sns.boxplot(data=df, x="admission_type", y="number_diagnoses", hue="readmitted", order=adm, hue_order=out)
+plt.title("Number of Diagnoses by Admission Type and Readmission Outcome")
+plt.xlabel("Admission type"); plt.ylabel("Number of diagnoses")
+plt.legend(title="Readmission outcome", loc="upper left", bbox_to_anchor=(1, 1)); save("fig5.png")
+
 r = df.groupby("number_diagnoses")["flag"].mean().mul(100).reset_index()
 r = r[r["number_diagnoses"].between(2, 9)]
 plt.figure(figsize=(9, 5))
@@ -99,6 +105,7 @@ bullets(s, ["1. Kept the three relevant columns",
 
 fig("Most stays have 9 diagnoses", "fig1.png", ["1,376 of 3,000 stays have exactly 9 diagnoses", "Likely because the source hospital systems capped recorded diagnoses, so patients with more conditions may be undercounted"])
 fig("Readmitted patients have more diagnoses", "fig2.png", ["Average diagnoses: 7.0 for not readmitted vs 7.7 for readmitted (either timing)"])
+fig("Readmitted patients: more diagnoses in all types", "fig5.png", ["Average diagnoses, not readmitted vs readmitted (either timing):", "Elective: 6.7 vs 7.4-7.7", "Urgent: 6.8 vs 7.4-7.7", "Emergency: 7.2 vs 7.7", "The gap is smallest for Emergency"])
 fig("Readmission rises with diagnoses", "fig3.png", ["Rate climbs from 30% at 5 diagnoses to 46% at 9", "Points at 2-3 diagnoses are noisy (39 and 102 patients)", "Overall: 40.0% readmitted"])
 fig("Same upward trend in each admission type", "fig4.png", ["1-4 diagnoses: 24.6% readmitted; 9+: 46.0%", "Elective is lowest in every group (34.1% vs 41.4% Urgent, 41.8% Emergency)", "Emergency-only check shows the same rise"])
 
